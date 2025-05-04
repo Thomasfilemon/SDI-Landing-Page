@@ -121,7 +121,7 @@ import Portfolio from "@/components/sections/Portfolio";
 
 export default function Home() {
   return (
-    <>
+    <div className="flex flex-col min-h-screen">
       <Header />
       <main className="flex-grow">
         <Hero />
@@ -130,6 +130,6 @@ export default function Home() {
         <Portfolio />
       </main>
       <Footer />
-    </>
+    </div>
   );
 }
