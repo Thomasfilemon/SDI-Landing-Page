@@ -473,7 +473,9 @@ export default function Services() {
                   }`}
                   whileHover={{ scale: 1.2 }}
                   animate={
-                    currentIndex === index ? { scale: [1, 1.2, 1] } : { scale: 1 }
+                    currentIndex === index
+                      ? { scale: [1, 1.2, 1] }
+                      : { scale: 1 }
                   }
                   transition={{
                     duration: 1.5,
@@ -526,11 +528,11 @@ export default function Services() {
               >
                 <span className="text-xl">×</span>
               </button>
-              
+
               <h2 className="text-2xl font-bold mb-6 text-center text-white">
-                Let's Connect!
+                {"Let's Connect!"}
               </h2>
-              
+
               <div className="rounded-2xl overflow-hidden border border-purple-500/30 bg-white p-4">
                 <Image
                   src="/images/SDI-QR.png"
@@ -540,7 +542,7 @@ export default function Services() {
                   className="w-full h-auto"
                 />
               </div>
-              
+
               <p className="text-center text-gray-300 mt-6">
                 Scan to connect with Swakarsa Digital Indonesia
               </p>
