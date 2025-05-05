@@ -13,10 +13,16 @@ const clients = [
 
 export default function ClientLogos() {
   const [mounted, setMounted] = useState(false);
+  const [clickedIndex, setClickedIndex] = useState<number | null>(null);
 
   useEffect(() => {
     setMounted(true);
   }, []);
+
+  
+  const handleClick = (index : number) => {
+    setClickedIndex(clickedIndex === index ? null : index);
+  };
 
   if (!mounted) {
     return (
@@ -110,6 +116,7 @@ export default function ClientLogos() {
             viewport={{ once: true }}
           >
             <motion.div 
+              onClick={() => handleClick(index)}
               className="relative overflow-hidden rounded-xl px-6 py-4 bg-gradient-to-br from-gray-800/90 to-gray-900/90 border border-gray-700 hover:border-blue-500/50 transition-all duration-300 shadow-lg cursor-pointer w-44"
               whileHover={{ y: -10, scale: 1.05 }}
               transition={{ duration: 0.2 }}
@@ -120,18 +127,26 @@ export default function ClientLogos() {
                   alt={client.name}
                   width={100}
                   height={50}
-                  className="max-h-full max-w-full object-contain grayscale group-hover:grayscale-0 transition-all duration-300"
+                  className={`max-h-full max-w-full object-contain grayscale transition-all duration-300 ${
+                    clickedIndex === index ? "grayscale-0" : "group-hover:grayscale-0"
+                  }`}
                 />
               </div>
               <div className="text-center">
-                <h3 className="text-white font-semibold text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <h3 className={`text-white font-semibold text-sm transition-opacity duration-300 ${
+                  clickedIndex === index ? "opacity-100" : "opacity-0 group-hover:opacity-100"
+                }`}>
                   {client.name}
                 </h3>
-                <p className="text-gray-400 text-xs mt-1 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <p className={`text-gray-400 text-xs mt-1 transition-opacity duration-300 ${
+                  clickedIndex === index ? "opacity-100" : "opacity-0 group-hover:opacity-100"
+                }`}>
                   {client.company}
                 </p>
               </div>
-              <div className="absolute inset-0 bg-gradient-to-t from-blue-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-xl pointer-events-none" />
+              <div className={`absolute inset-0 bg-gradient-to-t from-blue-500/5 to-transparent rounded-xl pointer-events-none transition-opacity duration-300 ${
+                clickedIndex === index ? "opacity-100" : "opacity-0 group-hover:opacity-100"
+              }`} />
             </motion.div>
           </motion.div>
         ))}

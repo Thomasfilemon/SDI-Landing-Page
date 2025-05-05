@@ -11,7 +11,6 @@ export default function Footer() {
           <p>Alamat: Jl. HRM Mangundiprojo No. 8, Kedamaian, Bandar Lampung</p>
           <p>Telepon: <a href="tel:+6282279513201" className="hover:underline">+62 82279513201</a></p>
           <p>Email: <a href="mailto:yonathan.tanu123@gmail.com" className="hover:underline">yonathan.tanu123@gmail.com</a></p>
-          <p>Website: <a href="https://www.swakarsadigital.com" target="_blank" rel="noopener noreferrer" className="hover:underline">www.swakarsadigital.com</a></p>
         </div>
       </div>
     </footer>

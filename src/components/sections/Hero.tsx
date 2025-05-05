@@ -6,6 +6,7 @@ import { useState, useEffect } from "react";
 
 export default function Hero() {
   const [mounted, setMounted] = useState(false);
+  const [clickedImage, setClickedImage] = useState<string | null>(null);
 
   useEffect(() => {
     setMounted(true);
@@ -19,6 +20,11 @@ export default function Hero() {
       repeat: Infinity,
       ease: "easeInOut"
     }
+  };
+
+  // Helper to handle click toggle
+  const handleImageClick = (name: string) => {
+    setClickedImage(clickedImage === name ? null : name);
   };
 
   if (!mounted) {
@@ -230,7 +236,7 @@ export default function Hero() {
                 <div className="text-gray-400">Client Satisfaction</div>
               </div>
               <div className="text-center md:text-left col-span-2 md:col-span-1">
-                <div className="text-3xl font-bold text-green-400 mb-1">5+</div>
+                <div className="text-3xl font-bold text-green-400 mb-1">2+</div>
                 <div className="text-gray-400">Years Experience</div>
               </div>
             </motion.div>
@@ -253,9 +259,10 @@ export default function Hero() {
                 <div className="p-6 space-y-4">
                   {/* YOYO - Top Row */}
                   <motion.div 
-                    className="relative overflow-hidden rounded-xl group"
+                    className="relative overflow-hidden rounded-xl group cursor-pointer"
                     whileHover={{ y: -10, scale: 1.02 }}
                     transition={{ duration: 0.3 }}
+                    onClick={() => handleImageClick("yoyo")}
                   >
                     <div className="aspect-[2/1] w-full">
                       <Image
@@ -266,7 +273,11 @@ export default function Hero() {
                         className="w-full h-full object-cover rounded-xl"
                       />
                     </div>
-                    <div className="absolute inset-0 bg-gradient-to-t from-gray-900/70 to-transparent rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+                    <div
+                      className={`absolute inset-0 bg-gradient-to-t from-gray-900/70 to-transparent rounded-xl transition-opacity duration-300 flex items-end p-6 ${
+                        clickedImage === "yoyo" ? "opacity-100" : "opacity-0 group-hover:opacity-100"
+                      }`}
+                    >
                       <div className="text-white">
                         <h3 className="font-bold text-2xl">Yoyo</h3>
                         <p className="text-lg text-gray-300">System Analyst</p>
@@ -278,9 +289,10 @@ export default function Hero() {
                   <div className="flex flex-row gap-4">
                     {/* THOMAS */}
                     <motion.div 
-                      className="relative overflow-hidden rounded-xl group flex-1"
+                      className="relative overflow-hidden rounded-xl group flex-1 cursor-pointer"
                       whileHover={{ y: -10, scale: 1.02 }}
                       transition={{ duration: 0.3 }}
+                      onClick={() => handleImageClick("thomas")}
                     >
                       <div className="aspect-square w-full">
                         <Image
@@ -291,7 +303,11 @@ export default function Hero() {
                           className="w-full h-full object-cover rounded-xl"
                         />
                       </div>
-                      <div className="absolute inset-0 bg-gradient-to-t from-gray-900/70 to-transparent rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
+                      <div
+                        className={`absolute inset-0 bg-gradient-to-t from-gray-900/70 to-transparent rounded-xl transition-opacity duration-300 flex items-end p-4 ${
+                          clickedImage === "thomas" ? "opacity-100" : "opacity-0 group-hover:opacity-100"
+                        }`}
+                      >
                         <div className="text-white">
                           <h3 className="font-bold text-xl">Thomas</h3>
                           <p className="text-base text-gray-300">Designer</p>
@@ -301,9 +317,10 @@ export default function Hero() {
                     
                     {/* JETHRO */}
                     <motion.div 
-                      className="relative overflow-hidden rounded-xl group flex-1"
+                      className="relative overflow-hidden rounded-xl group flex-1 cursor-pointer"
                       whileHover={{ y: -10, scale: 1.02 }}
                       transition={{ duration: 0.3 }}
+                      onClick={() => handleImageClick("jethro")}
                     >
                       <div className="aspect-square w-full">
                         <Image
@@ -314,7 +331,11 @@ export default function Hero() {
                           className="w-full h-full object-cover rounded-xl"
                         />
                       </div>
-                      <div className="absolute inset-0 bg-gradient-to-t from-gray-900/70 to-transparent rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
+                      <div
+                        className={`absolute inset-0 bg-gradient-to-t from-gray-900/70 to-transparent rounded-xl transition-opacity duration-300 flex items-end p-4 ${
+                          clickedImage === "jethro" ? "opacity-100" : "opacity-0 group-hover:opacity-100"
+                        }`}
+                      >
                         <div className="text-white">
                           <h3 className="font-bold text-xl">Jethro</h3>
                           <p className="text-base text-gray-300">Developer</p>
