@@ -2,8 +2,15 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { FaArrowRight, FaCode, FaRocket, FaCog } from "react-icons/fa";
+import { useState, useEffect } from "react";
 
 export default function Hero() {
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
   // Floating animation variant
   const floatingAnimation = {
     y: [0, -20, 0],
@@ -13,6 +20,121 @@ export default function Hero() {
       ease: "easeInOut"
     }
   };
+
+  if (!mounted) {
+    return (
+      <section id="hero" className="relative py-32 bg-gradient-to-br from-gray-900 to-gray-800 text-white overflow-hidden">
+        <div className="relative max-w-7xl mx-auto px-6">
+          <div className="flex flex-col md:flex-row items-center gap-12">
+            {/* Left Content */}
+            <div className="md:w-1/2 text-center md:text-left">
+              <div className="flex items-center gap-4 mb-8 justify-center md:justify-start">
+                <FaRocket className="text-blue-400 text-2xl" />
+                <span className="text-blue-400 font-semibold">Swakarsa Digital Indonesia</span>
+              </div>
+
+              <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
+                <span className="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+                  Solusi Digital
+                </span>
+                <br />
+                <span className="text-white">untuk Bisnis Anda</span>
+              </h1>
+
+              <p className="text-gray-300 mb-8 text-lg leading-relaxed max-w-xl mx-auto md:mx-0">
+                Perusahaan teknologi yang berfokus pada pengembangan software dan website. 
+                Kami membantu bisnis Anda berkembang dengan solusi digital yang inovatif, 
+                andal, dan disesuaikan dengan kebutuhan.
+              </p>
+
+              <div className="flex flex-wrap gap-4 justify-center md:justify-start">
+                <a
+                  href="#portfolio"
+                  className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-500 to-purple-500 text-white px-8 py-4 rounded-full shadow-lg transition-all duration-300"
+                >
+                  Lihat Proyek Kami
+                  <FaArrowRight className="text-sm" />
+                </a>
+                
+                <a
+                  href="#services"
+                  className="inline-flex items-center gap-2 border border-gray-400 text-gray-300 px-8 py-4 rounded-full transition-all duration-300"
+                >
+                  Pelajari Layanan
+                  <FaCog className="text-sm" />
+                </a>
+              </div>
+
+              {/* Stats */}
+              <div className="mt-16 grid grid-cols-2 md:grid-cols-3 gap-8">
+                <div className="text-center md:text-left">
+                  <div className="text-3xl font-bold text-blue-400 mb-1">10+</div>
+                  <div className="text-gray-400">Projects Completed</div>
+                </div>
+                <div className="text-center md:text-left">
+                  <div className="text-3xl font-bold text-purple-400 mb-1">100%</div>
+                  <div className="text-gray-400">Client Satisfaction</div>
+                </div>
+                <div className="text-center md:text-left col-span-2 md:col-span-1">
+                  <div className="text-3xl font-bold text-green-400 mb-1">5+</div>
+                  <div className="text-gray-400">Years Experience</div>
+                </div>
+              </div>
+            </div>
+
+            {/* Right Illustration */}
+            <div className="md:w-1/2 relative">
+              <div className="relative">
+                <div className="relative bg-gradient-to-br from-gray-800/80 to-gray-900/80 backdrop-blur-sm rounded-3xl overflow-hidden shadow-2xl border border-blue-500/30">
+                  <div className="p-6 space-y-4">
+                    {/* Team Members Layout */}
+                    <div className="relative overflow-hidden rounded-xl">
+                      <div className="aspect-[2/1] w-full">
+                        <Image
+                          src="/images/yoyo.jpeg"
+                          alt="Team Member - Yoyo"
+                          width={600}
+                          height={300}
+                          className="w-full h-full object-cover rounded-xl"
+                        />
+                      </div>
+                    </div>
+                    
+                    {/* Bottom Row - Thomas and Jethro */}
+                    <div className="flex flex-row gap-4">
+                      <div className="relative overflow-hidden rounded-xl flex-1">
+                        <div className="aspect-square w-full">
+                          <Image
+                            src="/images/Thomas.jpeg"
+                            alt="Team Member - Thomas"
+                            width={300}
+                            height={300}
+                            className="w-full h-full object-cover rounded-xl"
+                          />
+                        </div>
+                      </div>
+                      
+                      <div className="relative overflow-hidden rounded-xl flex-1">
+                        <div className="aspect-square w-full">
+                          <Image
+                            src="/images/Jethro.jpeg"
+                            alt="Team Member - Jethro"
+                            width={300}
+                            height={300}
+                            className="w-full h-full object-cover rounded-xl"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section id="hero" className="relative py-32 bg-gradient-to-br from-gray-900 to-gray-800 text-white overflow-hidden">
@@ -108,7 +230,7 @@ export default function Hero() {
                 <div className="text-gray-400">Client Satisfaction</div>
               </div>
               <div className="text-center md:text-left col-span-2 md:col-span-1">
-                <div className="text-3xl font-bold text-green-400 mb-1">2+</div>
+                <div className="text-3xl font-bold text-green-400 mb-1">5+</div>
                 <div className="text-gray-400">Years Experience</div>
               </div>
             </motion.div>
@@ -121,27 +243,6 @@ export default function Hero() {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
           >
-            {/* Floating particles */}
-            {[...Array(5)].map((_, i) => (
-              <motion.div
-                key={i}
-                className="absolute w-4 h-4 bg-blue-400/30 rounded-full blur-sm"
-                style={{
-                  top: `${Math.random() * 100}%`,
-                  left: `${Math.random() * 100}%`,
-                }}
-                animate={{
-                  y: [0, -30, 0],
-                  opacity: [0.3, 0.8, 0.3],
-                }}
-                transition={{
-                  duration: 3 + Math.random() * 2,
-                  repeat: Infinity,
-                  delay: Math.random() * 2,
-                }}
-              />
-            ))}
-
             {/* Main floating animation for the image container */}
             <motion.div
               animate={floatingAnimation}
@@ -227,7 +328,7 @@ export default function Hero() {
                 <div className="absolute inset-0 bg-gradient-to-tr from-blue-500/10 to-purple-500/10 rounded-3xl pointer-events-none" />
               </div>
               
-              {/* Glow effect */}
+              {/* Enhanced glow effect */}
               <div className="absolute inset-0 bg-gradient-to-br from-blue-500/20 to-purple-500/20 rounded-3xl blur-2xl -z-10" />
             </motion.div>
 
