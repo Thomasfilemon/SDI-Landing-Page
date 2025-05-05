@@ -185,7 +185,7 @@ export default function Header() {
               </button>
 
               <h2 className="text-2xl font-bold mb-6 text-center text-white">
-                Let's Connect!
+                {"Let's Connect!"}
               </h2>
 
               <div className="rounded-2xl overflow-hidden border border-purple-500/30 bg-white p-4">
@@ -199,7 +199,7 @@ export default function Header() {
               </div>
 
               <p className="text-center text-gray-300 mt-6">
-                  https://wa.me/6282279513201
+                https://wa.me/6282279513201
               </p>
             </motion.div>
           </motion.div>
