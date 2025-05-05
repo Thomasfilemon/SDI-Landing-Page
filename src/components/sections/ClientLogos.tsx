@@ -1,6 +1,7 @@
 "use client";
 import Image from "next/image";
 import { motion } from "framer-motion";
+import { useState, useEffect } from "react";
 
 const clients = [
   { name: "ALUMKA", file: "ALUMKA.jpeg", company: "Aluminium Manufacturing" },
@@ -11,33 +12,50 @@ const clients = [
 ];
 
 export default function ClientLogos() {
-  // Animation variants
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: { 
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1
-      }
-    }
-  };
+  const [mounted, setMounted] = useState(false);
 
-  const cardVariants = {
-    hidden: { 
-      opacity: 0, 
-      y: 50,
-      scale: 0.8 
-    },
-    visible: { 
-      opacity: 1, 
-      y: 0,
-      scale: 1,
-      transition: {
-        duration: 0.5,
-        ease: "easeOut"
-      }
-    }
-  };
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) {
+    return (
+      <section className="py-20 bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-center">
+        <h2 className="text-3xl font-bold mb-4 bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+          Dipercaya oleh Perusahaan Terkemuka
+        </h2>
+        <p className="text-gray-400 mb-12 max-w-2xl mx-auto text-lg">
+          Kami bangga menghadirkan solusi digital untuk klien-klien unggulan
+        </p>
+        <div className="flex justify-center gap-8 flex-wrap px-4">
+          {clients.map((client) => (
+            <div
+              key={client.name}
+              className="relative overflow-hidden rounded-xl px-6 py-4 bg-gradient-to-br from-gray-800/90 to-gray-900/90 border border-gray-700 shadow-lg cursor-pointer w-44"
+            >
+              <div className="h-16 flex items-center justify-center mb-3">
+                <Image
+                  src={`/images/${client.file}`}
+                  alt={client.name}
+                  width={100}
+                  height={50}
+                  className="max-h-full max-w-full object-contain grayscale"
+                />
+              </div>
+              <div className="text-center">
+                <h3 className="text-white font-semibold text-sm opacity-0">
+                  {client.name}
+                </h3>
+                <p className="text-gray-400 text-xs mt-1 opacity-0">
+                  {client.company}
+                </p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+    );
+  }
 
   return (
     <motion.section 
@@ -61,20 +79,6 @@ export default function ClientLogos() {
           ease: "easeInOut" 
         }}
       />
-      <motion.div 
-        className="absolute bottom-0 right-0 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl"
-        animate={{ 
-          x: [0, -30, 0],
-          y: [0, 30, 0],
-          scale: [1, 1.1, 1] 
-        }}
-        transition={{ 
-          duration: 10,
-          repeat: Infinity,
-          ease: "easeInOut",
-          delay: 1 
-        }}
-      />
       
       <motion.h2 
         className="text-3xl font-bold mb-4 bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent"
@@ -95,109 +99,44 @@ export default function ClientLogos() {
         Kami bangga menghadirkan solusi digital untuk klien-klien unggulan
       </motion.p>
       
-      <motion.div 
-        className="flex justify-center gap-8 flex-wrap px-4"
-        variants={containerVariants}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true }}
-      >
+      <div className="flex justify-center gap-8 flex-wrap px-4">
         {clients.map((client, index) => (
           <motion.div
             key={client.name}
-            variants={cardVariants}
-            whileHover={{ 
-              y: -20, 
-              scale: 1.05,
-              transition: { duration: 0.2 } 
-            }}
             className="group relative"
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: index * 0.1 }}
+            viewport={{ once: true }}
           >
             <motion.div 
-              className="relative overflow-hidden rounded-xl p-6 bg-gradient-to-br from-gray-800/90 to-gray-900/90 border border-gray-700 hover:border-blue-500/50 transition-all duration-300 shadow-lg"
-              whileHover={{ 
-                boxShadow: "0 10px 30px rgba(59, 130, 246, 0.2)" 
-              }}
+              className="relative overflow-hidden rounded-xl px-6 py-4 bg-gradient-to-br from-gray-800/90 to-gray-900/90 border border-gray-700 hover:border-blue-500/50 transition-all duration-300 shadow-lg cursor-pointer w-44"
+              whileHover={{ y: -10, scale: 1.05 }}
+              transition={{ duration: 0.2 }}
             >
-              {/* Logo */}
-              <motion.div
-                className="mb-4"
-                whileHover={{ rotate: 5 }}
-                transition={{ duration: 0.2 }}
-              >
+              <div className="h-16 flex items-center justify-center mb-3">
                 <Image
                   src={`/images/${client.file}`}
                   alt={client.name}
-                  width={140}
-                  height={70}
-                  className="mx-auto grayscale hover:grayscale-0 transition-all duration-300 filter brightness-90 hover:brightness-110"
+                  width={100}
+                  height={50}
+                  className="max-h-full max-w-full object-contain grayscale group-hover:grayscale-0 transition-all duration-300"
                 />
-              </motion.div>
-
-              {/* Company name */}
-              <motion.h3 
-                className="text-white font-semibold text-lg"
-                initial={{ opacity: 0 }}
-                whileHover={{ opacity: 1 }}
-                transition={{ duration: 0.2 }}
-              >
-                {client.name}
-              </motion.h3>
-              <motion.p 
-                className="text-gray-400 text-sm mt-1"
-                initial={{ opacity: 0 }}
-                whileHover={{ opacity: 1 }}
-                transition={{ duration: 0.2 }}
-              >
-                {client.company}
-              </motion.p>
-
-              {/* Animated border glow */}
-              <motion.div 
-                className="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
-                animate={{ 
-                  boxShadow: [
-                    "0 0 0 1px rgba(59, 130, 246, 0)",
-                    "0 0 0 1px rgba(59, 130, 246, 0.3)",
-                    "0 0 0 1px rgba(59, 130, 246, 0)"
-                  ]
-                }}
-                transition={{ 
-                  duration: 2,
-                  repeat: Infinity,
-                  ease: "easeInOut" 
-                }}
-              />
-
-              {/* Gradient overlay */}
+              </div>
+              <div className="text-center">
+                <h3 className="text-white font-semibold text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  {client.name}
+                </h3>
+                <p className="text-gray-400 text-xs mt-1 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  {client.company}
+                </p>
+              </div>
               <div className="absolute inset-0 bg-gradient-to-t from-blue-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-xl pointer-events-none" />
-              
-              {/* Floating particles */}
-              {[...Array(3)].map((_, i) => (
-                <motion.div
-                  key={i}
-                  className="absolute w-1 h-1 bg-blue-400/30 rounded-full"
-                  style={{
-                    top: `${Math.random() * 100}%`,
-                    left: `${Math.random() * 100}%`,
-                  }}
-                  animate={{
-                    y: [0, -10, 0],
-                    opacity: [0, 0.5, 0],
-                  }}
-                  transition={{
-                    duration: 2 + Math.random(),
-                    repeat: Infinity,
-                    delay: Math.random() * 2,
-                  }}
-                />
-              ))}
             </motion.div>
           </motion.div>
         ))}
-      </motion.div>
+      </div>
 
-      {/* Decorative line */}
       <motion.div 
         className="mt-16 w-32 h-1 bg-gradient-to-r from-blue-400 to-purple-400 mx-auto rounded-full"
         initial={{ scaleX: 0 }}
