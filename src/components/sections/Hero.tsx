@@ -108,7 +108,7 @@ export default function Hero() {
                 <div className="text-gray-400">Client Satisfaction</div>
               </div>
               <div className="text-center md:text-left col-span-2 md:col-span-1">
-                <div className="text-3xl font-bold text-green-400 mb-1">5+</div>
+                <div className="text-3xl font-bold text-green-400 mb-1">2+</div>
                 <div className="text-gray-400">Years Experience</div>
               </div>
             </motion.div>
@@ -148,14 +148,79 @@ export default function Hero() {
               className="relative"
             >
               <div className="relative bg-gradient-to-br from-gray-800/80 to-gray-900/80 backdrop-blur-sm rounded-3xl overflow-hidden shadow-2xl border border-blue-500/30">
-                <div className="p-6">
-                  <Image
-                    src="/images/hero-illustration.png"
-                    alt="Ilustrasi Swakarsa Digital"
-                    width={500}
-                    height={400}
-                    className="rounded-xl"
-                  />
+                {/* Team Members Layout */}
+                <div className="p-6 space-y-4">
+                  {/* YOYO - Top Row */}
+                  <motion.div 
+                    className="relative overflow-hidden rounded-xl group"
+                    whileHover={{ y: -10, scale: 1.02 }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    <div className="aspect-[2/1] w-full">
+                      <Image
+                        src="/images/yoyo.jpeg"
+                        alt="Team Member - Yoyo"
+                        width={600}
+                        height={300}
+                        className="w-full h-full object-cover rounded-xl"
+                      />
+                    </div>
+                    <div className="absolute inset-0 bg-gradient-to-t from-gray-900/70 to-transparent rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+                      <div className="text-white">
+                        <h3 className="font-bold text-2xl">Yoyo</h3>
+                        <p className="text-lg text-gray-300">System Analyst</p>
+                      </div>
+                    </div>
+                  </motion.div>
+                  
+                  {/* Bottom Row - Thomas and Jethro */}
+                  <div className="flex flex-row gap-4">
+                    {/* THOMAS */}
+                    <motion.div 
+                      className="relative overflow-hidden rounded-xl group flex-1"
+                      whileHover={{ y: -10, scale: 1.02 }}
+                      transition={{ duration: 0.3 }}
+                    >
+                      <div className="aspect-square w-full">
+                        <Image
+                          src="/images/Thomas.jpeg"
+                          alt="Team Member - Thomas"
+                          width={300}
+                          height={300}
+                          className="w-full h-full object-cover rounded-xl"
+                        />
+                      </div>
+                      <div className="absolute inset-0 bg-gradient-to-t from-gray-900/70 to-transparent rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
+                        <div className="text-white">
+                          <h3 className="font-bold text-xl">Thomas</h3>
+                          <p className="text-base text-gray-300">Designer</p>
+                        </div>
+                      </div>
+                    </motion.div>
+                    
+                    {/* JETHRO */}
+                    <motion.div 
+                      className="relative overflow-hidden rounded-xl group flex-1"
+                      whileHover={{ y: -10, scale: 1.02 }}
+                      transition={{ duration: 0.3 }}
+                    >
+                      <div className="aspect-square w-full">
+                        <Image
+                          src="/images/Jethro.jpeg"
+                          alt="Team Member - Jethro"
+                          width={300}
+                          height={300}
+                          className="w-full h-full object-cover rounded-xl"
+                        />
+                      </div>
+                      <div className="absolute inset-0 bg-gradient-to-t from-gray-900/70 to-transparent rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
+                        <div className="text-white">
+                          <h3 className="font-bold text-xl">Jethro</h3>
+                          <p className="text-base text-gray-300">Developer</p>
+                        </div>
+                      </div>
+                    </motion.div>
+                  </div>
                 </div>
                 
                 {/* Gradient overlay effect */}
