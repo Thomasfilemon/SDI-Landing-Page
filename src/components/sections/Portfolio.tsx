@@ -65,7 +65,10 @@ export default function Portfolio() {
   };
 
   return (
-    <section className="py-20 bg-[#f5f7fa] dark:bg-gray-900 overflow-hidden">
+    <section
+      id="portfolio"
+      className="py-20 bg-[#f5f7fa] dark:bg-gray-900 overflow-hidden"
+    >
       <div className="text-center mb-10 px-4 sm:px-8 max-w-screen-xl mx-auto">
         <h2 className="text-4xl md:text-5xl font-bold mb-9 bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
           Portfolio

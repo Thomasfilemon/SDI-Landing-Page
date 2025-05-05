@@ -21,7 +21,7 @@ export default function Header() {
         {/* Navigation */}
         <nav className="hidden md:flex items-center space-x-8">
           <Link
-            href="#"
+            href="#hero"
             className="font-medium text-white hover:text-purple-400 transition-colors duration-200"
           >
             Home
